@@ -1,4 +1,4 @@
-# EngineeringWeekChallenge
+# Engineering Week Challenge
 
 Students will hack their names onto a list of "Famous Hackers"
 
