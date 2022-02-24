@@ -1,0 +1,60 @@
+<!-- Webpage that displays a list of names from a text file-->
+<html>
+
+<head>
+    <title>List of Famous Hackers</title>
+</head>
+<!-- In-line style to change h1 font to Arial -->
+<style>
+    * {
+        font-family: Arial;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    .hacker {
+        font-size: 30px;
+    }
+</style>
+
+<body>
+
+
+    <center>
+        <!-- Display the leaderboard -->
+        <h1>List of Famous Hackers</h1>
+    </center>
+    <div>
+        <center>
+            <div class="hacker">Tyler Harrison</div>
+                <br>
+                <div class="hacker">Tyler Harrison</div>
+                <br>
+                <div class="hacker">Tyler Harrison</div>
+                <br>
+        </center>
+    </div>
+
+    <div class="footer">
+        <img src="header.png" height="100px" />
+    </div>
+
+</body>
+
+<script>
+    let handle = setInterval( () => {
+  console.log('Page updated');
+  }, 1000);
+</script>
+
+</html>
