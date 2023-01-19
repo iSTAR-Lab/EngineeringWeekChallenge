@@ -2,6 +2,12 @@
 <html>
 <head>
     <title>List of Famous Hackers</title>
+    <script>
+        // Refresh the page every 5 seconds
+        setInterval(() => {
+            location.reload();
+        }, 5000);
+    </script>
 </head>
 <!-- In-line style to change h1 font to Arial -->
 <style>
