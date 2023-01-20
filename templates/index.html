@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title>Base64</title>
+		<link rel="stylesheet" href="/static/css/materialize.min.css" />
+	</head>
+	<body>
+		<nav>
+			<div class="nav-wrapper" style="background-color: #500000">
+				<a href="#" class="brand-logo center">Engineering Week Challenge</a>
+			</div>
+		</nav>
+		<div>
+			<center>
+				<!-- Picture of RELLIS (rellis-base64-encoded.jpg) -->
+				<img
+					src="static/images/rellis-base64-encoded.jpg"
+					alt="RELLIS"
+					height="50%"
+				/>
+				<!-- Password field -->
+				<br /><br />
+				<form action="/validate" method="POST">
+					<input
+						type="text"
+						style="width: 200px"
+						name="name"
+						placeholder="Full Name"
+						autocomplete="on"
+					/>
+					<input
+						type="password"
+						style="width: 300px"
+						name="password"
+						placeholder="Password"
+						autocomplete="off"
+					/>
+					<button class="btn" type="submit">Submit</button>
+				</form>
+			</center>
+		</div>
+	</body>
+</html>

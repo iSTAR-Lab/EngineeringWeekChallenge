@@ -1,0 +1,148 @@
+<html>
+	<head>
+		<title>Admin Panel</title>
+		<link rel="stylesheet" href="/static/css/materialize.min.css" />
+		<script src="/static/js/materialize.min.js"></script>
+	</head>
+	<body>
+		<nav>
+			<div class="nav-wrapper" style="background-color: #500000">
+				<a href="#" class="brand-logo center">Admin Panel</a>
+			</div>
+		</nav>
+		<div class="container" style="margin-top: 20px">
+			<div class="row">
+				<div class="col s12">
+					<table class="striped">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Time</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody id="names-table">
+							{% for name in names %}
+							<tr>
+								<td>{{ name.name }}</td>
+								<td>{{ name.time }}</td>
+								<td>
+									<a
+										href="#"
+										class="btn-flat red-text delete-name"
+										data-id="{{name.id}}"
+										>Delete</a
+									>
+								</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<div class="input-field col s3">
+						<input id="name-input" type="text" class="validate" />
+						<label for="name-input">Name</label>
+					</div>
+					<div class="input-field col s3">
+						<input id="time-input" type="text" class="validate" />
+						<label for="time-input">Time</label>
+					</div>
+					<div class="col s3">
+						<a href="#" class="btn" id="add-name">Add Name</a>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12 center-align">
+					<a href="#" class="btn red" id="wipe-database">Wipe Database</a>
+				</div>
+			</div>
+		</div>
+		<script>
+			let handle = setInterval(() => {
+				console.log("Page updated");
+			}, 1000);
+
+			// Add event listener for "Add Name" button
+			document.querySelector("#add-name").addEventListener("click", (e) => {
+				e.preventDefault();
+				// Get values from inputs
+				let name = document.querySelector("#name-input").value;
+				let time = document.querySelector("#time-input").value;
+				// Add name to table
+				addNameToTable(name, time);
+				// Clear input fields
+				document.querySelector("#name-input").value = "";
+				document.querySelector("#time-input").value = "";
+			});
+
+			// Add event listener for "Delete" links
+			document.querySelector("#names-table").addEventListener("click", (e) => {
+				// Delete name from table
+                console.log(e)
+				deleteNameFromTable(e.target.dataset.id);
+			});
+
+			// Add event listener for "Wipe Database" button
+			document
+				.querySelector("#wipe-database")
+				.addEventListener("click", (e) => {
+					e.preventDefault();
+					// Wipe the database
+					wipeDatabase();
+				});
+
+			// Delete name from table function
+			function deleteNameFromTable(id) {
+				// Find the name's row in the table
+				let row = document.querySelector(`#names-table [data-id='${id}']`)
+					.parentElement.parentElement;
+				// Delete the name's row from the table
+				row.remove();
+				console.log(id);
+				// Make POST request to delete name from database with request form data[action] = delete and data[id] = id
+				fetch("/admin/db_action", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ action: "delete", id: id }),
+				});
+			}
+
+			// Wipe database function
+			function wipeDatabase() {
+				// Make POST request to wipe database with request form data[action] = clear
+				fetch("/admin/db_action", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ action: "clear" }),
+				});
+				// Clear the names table
+				document.querySelector("#names-table").innerHTML = "";
+				// Show a message that the database has been wiped
+				M.toast({ html: "Database has been wiped." });
+			}
+
+			// Add name to table function
+			function addNameToTable(name, time) {
+				// Make POST request to add name to database with request form data[action] = add and data[name] = name and data[time] = time
+				fetch("/admin/db_action", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ action: "add", name, time }),
+				});
+				// Show a message that the name has been added
+				M.toast({ html: "Name has been added." });
+                location.reload()
+			}
+		</script>
+	</body>
+</html>

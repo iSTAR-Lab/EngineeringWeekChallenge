@@ -1,11 +1,19 @@
 version: '3'
 services:
-  web:
-    build: php:7.2-apache
-    ports:
-      - "80:80"
-    volumes:
-      - .:/var/www/html/
-    stdin_open: true
-    tty: true
+  engineering-week-challenge:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: istarlabs/engineering-week-challenge
     restart: unless-stopped
+    volumes:
+      - leaderboard:/app
+    ports:
+      - "5000:5000"
+    container_name: engineering-week-challenge
+    environment:
+      - PASSWORD=${PASSWORD}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+
+volumes:
+  leaderboard:
