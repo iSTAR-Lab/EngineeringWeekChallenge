@@ -8,7 +8,7 @@ Check the [resources](resources/) folder for the PDF document to give to student
 
 ## Setup
 
-First you must set the environment variable `PASSWORD`. This can be done in a `.env` file or use the session environment (like Portainer env config).
+First you must set the environment variables `PASSWORD` and `ADMIN_PASSWORD`. This can be done in a `.env` file or use the session environment (like Portainer env config).
 
 Example `.env` file:
 
