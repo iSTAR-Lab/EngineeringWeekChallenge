@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>Admin Login</title>
+		<link rel="stylesheet" href="/static/css/materialize.min.css" />
+	</head>
+	<body>
+		<nav>
+			<div class="nav-wrapper" style="background-color: #500000">
+				<a href="#" class="brand-logo center">Admin Login</a>
+			</div>
+		</nav>
+		<div>
+			<center>
+				<br /><br />
+				<form action="/admin" method="POST">
+					<input
+						type="password"
+						style="width: 300px"
+						name="password"
+						placeholder="Password"
+						autocomplete="off"
+					/>
+					<button class="btn" type="submit">Submit</button>
+				</form>
+			</center>
+		</div>
+	</body>
+</html>

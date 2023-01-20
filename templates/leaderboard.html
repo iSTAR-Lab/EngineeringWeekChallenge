@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<title>List of Famous Hackers</title>
+		<link rel="stylesheet" href="/static/css/materialize.min.css" />
+	</head>
+	<style>
+		.footer {
+			position: fixed;
+			bottom: 0;
+			left: 50%;
+			transform: translate(-50%, 0);
+			text-align: center;
+		}
+
+		.hacker {
+			font-size: 30px;
+		}
+	</style>
+	<body>
+        <nav>
+            <div class="nav-wrapper" style="background-color: #500000;">
+                <a href="#" class="brand-logo center">List of Famous Hackers</a>
+            </div>
+        </nav>
+        <div class="container" style="margin-top: 20px;">
+            <div class="row">
+                <div class="col s12">
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for name in names %}
+                            <tr>
+                                <td>{{ name.name }}</td>
+                                <td>{{ name.time }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+		<div class="footer">
+			<img src="/static/images/header.png" height="100px" />
+		</div>
+	</body>
+
+	<script>
+		let handle = setInterval(() => {
+			console.log("Page updated");
+		}, 1000);
+	</script>
+</html>
